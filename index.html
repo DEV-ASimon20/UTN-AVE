@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYSACAD - Módulo de Autogestión Alumnos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Arial', sans-serif; }
+        .menu-link:hover { background-color: #f0f9ff; padding-left: 20px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #e5e7eb; }
+        th { background-color: #003087; color: white; font-weight: 600; }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+    <!-- LOGIN -->
+    <div id="login-screen" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#003087] to-[#00a3a3]">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
+            <div class="flex justify-center mb-8">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-black flex items-center justify-center rounded-full text-white text-3xl font-bold">✦</div>
+                    <div>
+                        <span class="text-5xl font-bold tracking-tighter text-[#00a3a3]">UTN</span>
+                        <div class="text-white text-sm font-semibold tracking-widest bg-[#003087] px-3 py-0.5 rounded inline-block">AVELLANEDA</div>
+                    </div>
+                </div>
+            </div>
+            <h1 class="text-center text-2xl font-semibold text-gray-800 mb-2">Sistema Académico SYSACAD</h1>
+            <p class="text-center text-gray-600 mb-8">Módulo de autogestión alumnos</p>
+           
+            <div class="space-y-6">
+                <input id="username" type="text" value="12345678" placeholder="Usuario / Legajo"
+                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-[#00a3a3]">
+                <input id="password" type="password" value="utn2026" placeholder="Contraseña"
+                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-[#00a3a3]">
+                <button onclick="login()"
+                        class="w-full bg-[#003087] hover:bg-[#002266] text-white font-semibold py-4 rounded-xl transition-all">
+                    INGRESAR AL SISTEMA
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANTALLA PRINCIPAL -->
+    <div id="main-screen" class="hidden min-h-screen bg-gray-100">
+        <header class="bg-white border-b shadow-sm">
+            <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-black flex items-center justify-center rounded-full text-white text-4xl">✦</div>
+                        <span class="text-4xl font-bold text-[#00a3a3]">UTN</span>
+                        <div class="text-white text-xs font-semibold bg-[#003087] px-3 py-px rounded">AVELLANEDA</div>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-semibold text-[#003087]">Universidad Tecnológica Nacional</h1>
+                        <p class="text-sm text-gray-600">Facultad Regional Avellaneda - SYSACAD</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6">
+                    <div class="text-right">
+                        <p class="text-sm font-medium">Alexander Luis Huertas Simón</p>
+                        <p class="text-xs text-gray-500">Legajo: <span class="font-mono">12345678</span></p>
+                    </div>
+                    <button onclick="logout()" class="px-5 py-2 bg-red-100 hover:bg-red-200 text-red-700 rounded-xl font-medium">Salir</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="max-w-7xl mx-auto px-6 py-8 flex gap-8">
+            <!-- MENÚ LATERAL -->
+            <div class="w-80 bg-white rounded-3xl shadow p-6 h-fit">
+                <h2 class="text-[#003087] font-semibold text-lg mb-4">Menú principal</h2>
+                <ul class="space-y-1 text-gray-700">
+                    <li onclick="showSection('materias')" class="menu-link px-4 py-3 rounded-2xl cursor-pointer flex items-center gap-3">📚 Materias del plan</li>
+                    <li onclick="showSection('estado')" class="menu-link px-4 py-3 rounded-2xl cursor-pointer flex items-center gap-3">📊 Estado académico</li>
+                    <li onclick="showSection('cursado')" class="menu-link px-4 py-3 rounded-2xl cursor-pointer flex items-center gap-3">📖 Cursado / Notas</li>
+                    <li onclick="showSection('examenes')" class="menu-link px-4 py-3 rounded-2xl cursor-pointer flex items-center gap-3">📝 Exámenes</li>
+                    <li onclick="logout()" class="menu-link px-4 py-3 rounded-2xl cursor-pointer text-red-600">🚪 Salir</li>
+                </ul>
+            </div>
+
+            <!-- CONTENIDO -->
+            <div class="flex-1 bg-white rounded-3xl shadow p-8" id="content-area"></div>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            document.getElementById('login-screen').classList.add('hidden');
+            document.getElementById('main-screen').classList.remove('hidden');
+            showSection('inicio');
+        }
+
+        function logout() {
+            document.getElementById('main-screen').classList.add('hidden');
+            document.getElementById('login-screen').classList.remove('hidden');
+        }
+
+        function showSection(section) {
+            const content = document.getElementById('content-area');
+            
+            if (section === 'materias') {
+                // (Mantengo exactamente lo que ya tenías)
+                content.innerHTML = `
+                    <div class="text-center">
+                        <h2 class="text-3xl font-bold text-[#003087] mb-8">Materias de Ingeniería Electrónica - Plan 2023</h2>
+                        <div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
+                            <table class="min-w-full text-sm">
+                                <thead>
+                                    <tr class="bg-[#003087] text-white">
+                                        <th class="px-6 py-4 text-left font-semibold">Año</th>
+                                        <th class="px-6 py-4 text-left font-semibold">Dic.</th>
+                                        <th class="px-6 py-4 text-left font-semibold">Materia</th>
+                                        <th class="px-6 py-4 text-center font-semibold">Se Cursa</th>
+                                        <th class="px-6 py-4 text-center font-semibold">Se Rinde</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200 text-gray-700">
+                                    <!-- Año 1 -->
+                                    <tr><td class="px-6 py-3 font-medium text-center">1</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Análisis Matemático I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">1</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Física I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">1</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Informática I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">1</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Ingeniería Electrónica</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">1</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Ingeniería y Sociedad</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">1</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Química General</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">1</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Álgebra y Geometría Analítica</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <!-- Año 2 -->
+                                    <tr><td class="px-6 py-3 font-medium text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Análisis Matemático II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Cálculo Numérico</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Dispositivos Electrónicos</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Física II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Informática II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Inglés I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Probabilidad y Estadística</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Taller de Matemática Aplicada</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Técnicas Digitales I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <!-- Año 3 -->
+                                    <tr><td class="px-6 py-3 font-medium text-center">3</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Análisis de Señales y Sistemas</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">3</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Diseño Asistido por Computadora</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">3</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Electrónica Aplicada I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">3</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Física Electrónica</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">3</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Inglés II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">3</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Medios de Enlace</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">3</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Seguridad, Higiene y Medio Ambiente</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">3</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Teoría de los Circuitos I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <!-- Años 4, 5 y 6 -->
+                                    <tr><td class="px-6 py-3 font-medium text-center">4</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Electrónica Aplicada II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">4</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Legislación</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">5</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Electrónica Aplicada III</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">5</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Sistemas de Control</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">6</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Práctica Profesional Supervisada</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                    <tr><td class="px-6 py-3 font-medium text-center">6</td><td class="px-6 py-3 text-center">1/2c</td><td class="px-6 py-3">Proyecto Final</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mt-10 text-center">
+                            <button onclick="showSection('inicio')" class="px-10 py-4 bg-[#003087] hover:bg-[#002266] text-white font-semibold rounded-2xl transition-all text-lg">
+                                ← Volver a menú principal
+                            </button>
+                        </div>
+                    </div>`;
+            } 
+            else if (section === 'estado') {
+                // (Mantengo el certificado que ya tenías)
+                content.innerHTML = `
+                    <div class="max-w-3xl mx-auto bg-white border border-gray-300 shadow-2xl p-12 rounded-2xl">
+                        <div class="text-center mb-10">
+                            <h1 class="text-2xl font-bold text-[#003087]">UNIVERSIDAD TECNOLÓGICA NACIONAL</h1>
+                            <h2 class="text-xl font-semibold text-gray-700 mt-1">FACULTAD REGIONAL AVELLANEDA</h2>
+                            <h3 class="text-lg text-gray-600 mt-1">DIRECCIÓN DE ALUMNOS</h3>
+                        </div>
+                        <div class="text-center mb-12">
+                            <h2 class="text-3xl font-bold tracking-wider text-[#003087]">CERTIFICADO DE ALUMNO REGULAR</h2>
+                        </div>
+                        <div class="text-lg leading-relaxed text-gray-700 mb-10">
+                            <p>
+                                La Dirección de Alumnos de la Facultad de Ingeniería certifica que 
+                                <strong>HUERTAS SIMÓN, ALEXANDER LUIS</strong>, con Legajo 
+                                <strong>12345678</strong> se encuentra inscripto/a como alumno/a regular 
+                                de esta facultad, correspondiente al Ciclo Lectivo <strong>2026</strong> 
+                                en la Carrera de <strong>Ingeniería Electrónica</strong>.
+                            </p>
+                        </div>
+                        <div class="text-lg leading-relaxed text-gray-700">
+                            <p>
+                                Se extiende el presente Certificado para ser presentado ante quien corresponda 
+                                en la Ciudad de Buenos Aires el <strong>14 del mes de abril del 2026</strong>.
+                            </p>
+                        </div>
+                        <div class="mt-16 flex justify-between items-end border-t border-gray-300 pt-8">
+                            <div>
+                                <div class="w-56 h-px bg-gray-400 mb-3"></div>
+                                <p class="text-sm text-gray-600">Autoridad Competente</p>
+                            </div>
+                            <div class="text-right text-sm text-gray-500">
+                                Buenos Aires, 14 de abril de 2026
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-12">
+                        <button onclick="showSection('inicio')" class="px-10 py-4 bg-[#003087] hover:bg-[#002266] text-white font-semibold rounded-2xl transition-all text-lg">
+                            ← Volver a menú principal
+                        </button>
+                    </div>`;
+            } 
+            else if (section === 'cursado') {
+                // ==================== CURSADO / NOTAS ====================
+                content.innerHTML = `
+                    <div class="max-w-5xl mx-auto">
+                        <h2 class="text-3xl font-bold text-[#003087] mb-2 text-center">Cursado / Notas</h2>
+                        <p class="text-center text-gray-600 mb-8">HUERTAS SIMÓN, Alexander Luis • Legajo 12345678 • Ciclo 2026</p>
+                        
+                        <div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm bg-white">
+                            <table class="min-w-full text-sm">
+                                <thead>
+                                    <tr class="bg-[#003087] text-white">
+                                        <th class="px-6 py-4 text-left font-semibold">Año</th>
+                                        <th class="px-6 py-4 text-left font-semibold">Materia</th>
+                                        <th class="px-6 py-4 text-center font-semibold">Estado</th>
+                                        <th class="px-6 py-4 text-center font-semibold">Nota Final</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200 text-gray-700">
+                                    <!-- Año 1 -->
+                                    <tr><td class="px-6 py-3 text-center">1</td><td class="px-6 py-3">Análisis Matemático I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold text-red-600">6</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">1</td><td class="px-6 py-3">Física I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">1</td><td class="px-6 py-3">Informática I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">8</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">1</td><td class="px-6 py-3">Ingeniería Electrónica</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">1</td><td class="px-6 py-3">Ingeniería y Sociedad</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">9</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">1</td><td class="px-6 py-3">Química General</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">1</td><td class="px-6 py-3">Álgebra y Geometría Analítica</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">8</td></tr>
+                                    
+                                    <!-- Año 2 -->
+                                    <tr><td class="px-6 py-3 text-center">2</td><td class="px-6 py-3">Análisis Matemático II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold text-red-600">6</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">2</td><td class="px-6 py-3">Cálculo Numérico</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">2</td><td class="px-6 py-3">Dispositivos Electrónicos</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">2</td><td class="px-6 py-3">Física II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold text-red-600">6</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">2</td><td class="px-6 py-3">Informática II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">8</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">2</td><td class="px-6 py-3">Inglés I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">9</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">2</td><td class="px-6 py-3">Probabilidad y Estadística</td><td class="px-6 py-3 text-center text-amber-600 font-medium">Cursando</td><td class="px-6 py-3 text-center font-bold text-gray-400">-</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">2</td><td class="px-6 py-3">Taller de Matemática Aplicada</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">2</td><td class="px-6 py-3">Técnicas Digitales I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">8</td></tr>
+
+                                    <!-- Año 3 -->
+                                    <tr><td class="px-6 py-3 text-center">3</td><td class="px-6 py-3">Análisis de Señales y Sistemas</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">3</td><td class="px-6 py-3">Diseño Asistido por Computadora</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">8</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">3</td><td class="px-6 py-3">Electrónica Aplicada I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">3</td><td class="px-6 py-3">Física Electrónica</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">3</td><td class="px-6 py-3">Inglés II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">9</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">3</td><td class="px-6 py-3">Medios de Enlace</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">8</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">3</td><td class="px-6 py-3">Seguridad, Higiene y Medio Ambiente</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">3</td><td class="px-6 py-3">Teoría de los Circuitos I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold text-red-600">6</td></tr>
+
+                                    <!-- Año 4 -->
+                                    <tr><td class="px-6 py-3 text-center">4</td><td class="px-6 py-3">Electrónica Aplicada II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">4</td><td class="px-6 py-3">Legislación</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">8</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">4</td><td class="px-6 py-3">Medidas Electrónicas I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">4</td><td class="px-6 py-3">Máquinas e Instalaciones Eléctricas</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">4</td><td class="px-6 py-3">Sistemas de Comunicaciones</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">8</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">4</td><td class="px-6 py-3">Teoría de los Circuitos II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold text-red-600">6</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">4</td><td class="px-6 py-3">Técnicas Digitales II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
+
+                                    <!-- Año 5 -->
+                                    <tr><td class="px-6 py-3 text-center">5</td><td class="px-6 py-3">Electrónica Aplicada III</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold text-red-600">6</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">5</td><td class="px-6 py-3">Electrónica de Potencia</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">5</td><td class="px-6 py-3">Medidas Electrónicas II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">8</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">5</td><td class="px-6 py-3">Organización Industrial</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">5</td><td class="px-6 py-3">Sistemas de Control</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">9</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">5</td><td class="px-6 py-3">Tecnología Electrónica</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">5</td><td class="px-6 py-3">Técnicas Digitales III</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">8</td></tr>
+
+                                    <!-- Año 6 (las que estás cursando aparecen como "Cursando") -->
+                                    <tr><td class="px-6 py-3 text-center">6</td><td class="px-6 py-3">Práctica Profesional Supervisada</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">6</td><td class="px-6 py-3">Bioelectrónica y Microsistemas (Elec.)</td><td class="px-6 py-3 text-center text-amber-600 font-medium">Cursando</td><td class="px-6 py-3 text-center font-bold text-gray-400">-</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">6</td><td class="px-6 py-3">Electrónica Industrial (Elec.)</td><td class="px-6 py-3 text-center text-amber-600 font-medium">Cursando</td><td class="px-6 py-3 text-center font-bold text-gray-400">-</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">6</td><td class="px-6 py-3">Sistemas Avanzados de Telecomunicaciones</td><td class="px-6 py-3 text-center text-amber-600 font-medium">Cursando</td><td class="px-6 py-3 text-center font-bold text-gray-400">-</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">6</td><td class="px-6 py-3">Economía</td><td class="px-6 py-3 text-center text-amber-600 font-medium">Cursando</td><td class="px-6 py-3 text-center font-bold text-gray-400">-</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">6</td><td class="px-6 py-3">Proyecto Final</td><td class="px-6 py-3 text-center text-amber-600 font-medium">Cursando</td><td class="px-6 py-3 text-center font-bold text-gray-400">-</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">6</td><td class="px-6 py-3">Instrumentación y Control de Procesos (E)</td><td class="px-6 py-3 text-center text-amber-600 font-medium">Cursando</td><td class="px-6 py-3 text-center font-bold text-gray-400">-</td></tr>
+                                    <tr><td class="px-6 py-3 text-center">6</td><td class="px-6 py-3">Procesamiento Embebido de Señales (Elec.)</td><td class="px-6 py-3 text-center text-amber-600 font-medium">Cursando</td><td class="px-6 py-3 text-center font-bold text-gray-400">-</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="mt-8 text-center text-sm text-gray-500">
+                            
+                        </div>
+
+                        <div class="mt-10 text-center">
+                            <button onclick="showSection('inicio')" 
+                                    class="px-10 py-4 bg-[#003087] hover:bg-[#002266] text-white font-semibold rounded-2xl transition-all text-lg">
+                                ← Volver a menú principal
+                            </button>
+                        </div>
+                    </div>`;
+            } 
+            else if (section === 'inicio') {
+                content.innerHTML = `
+                    <div class="text-center py-20">
+                        <h2 class="text-3xl font-semibold text-gray-800 mb-4">¡Bienvenido, Alexander!</h2>
+                        <p class="text-gray-600">Selecciona una opción del menú lateral</p>
+                    </div>`;
+            } 
+            else {
+                content.innerHTML = `<div class="text-center py-20 text-gray-500">Sección "${section}" en desarrollo</div>`;
+            }
+        }
+
+        // Atajo Ctrl + K
+        document.addEventListener('keydown', e => {
+            if (e.ctrlKey && e.key === 'k') login();
+        });
+    </script>
+</body>
+</html>
