@@ -109,80 +109,77 @@
 
             if (section === 'materias') {
                 content.innerHTML = `
-                    <div class="text-center">
-                        <h2 class="text-3xl font-bold text-[#003087] mb-8">Materias de Ingeniería Electrónica - Plan 2023</h2>
-                        <div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
-                            <table class="min-w-full text-sm">
-                                <thead>
-                                    <tr class="bg-[#003087] text-white">
-                                        <th class="px-6 py-4 text-left font-semibold">Año</th>
-                                        <th class="px-6 py-4 text-left font-semibold">Dic.</th>
-                                        <th class="px-6 py-4 text-left font-semibold">Materia</th>
-                                        <th class="px-6 py-4 text-center font-semibold">Se Cursa</th>
-                                        <th class="px-6 py-4 text-center font-semibold">Se Rinde</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-gray-200 text-gray-700">
-                                    <!-- Año 1 -->
-                                    <tr><td class="px-6 py-3 text-center">1</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Análisis Matemático I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">1</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Física I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">1</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Informática I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">1</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Ingeniería Electrónica</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">1</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Ingeniería y Sociedad</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">1</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Química General</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">1</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Álgebra y Geometría Analítica</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
-                                    <!-- Año 2 -->
-                                    <tr><td class="px-6 py-3 text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Análisis Matemático II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Cálculo Numérico</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Dispositivos Electrónicos</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Física II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Informática II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Inglés I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Probabilidad y Estadística</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Taller de Matemática Aplicada</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Técnicas Digitales I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
-                                   <!-- Año 3 -->
-                                    <tr><td class="px-6 py-3 text-center">3</td><td class="px-6 py-3">Análisis de Señales y Sistemas</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">3</td><td class="px-6 py-3">Diseño Asistido por Computadora</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">8</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">3</td><td class="px-6 py-3">Electrónica Aplicada I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">3</td><td class="px-6 py-3">Física Electrónica</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">3</td><td class="px-6 py-3">Inglés II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">9</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">3</td><td class="px-6 py-3">Medios de Enlace</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">8</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">3</td><td class="px-6 py-3">Seguridad, Higiene y Medio Ambiente</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">3</td><td class="px-6 py-3">Teoría de los Circuitos I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold text-red-600">6</td></tr>
-                                    <!-- Año 4 -->
-                                    <tr><td class="px-6 py-3 text-center">4</td><td class="px-6 py-3">Electrónica Aplicada II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">4</td><td class="px-6 py-3">Legislación</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">8</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">4</td><td class="px-6 py-3">Medidas Electrónicas I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">4</td><td class="px-6 py-3">Máquinas e Instalaciones Eléctricas</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">4</td><td class="px-6 py-3">Sistemas de Comunicaciones</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">8</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">4</td><td class="px-6 py-3">Teoría de los Circuitos II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold text-red-600">6</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">4</td><td class="px-6 py-3">Técnicas Digitales II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
-                                    <!-- Año 5 -->
-                                    <tr><td class="px-6 py-3 text-center">5</td><td class="px-6 py-3">Electrónica Aplicada III</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold text-red-600">6</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">5</td><td class="px-6 py-3">Electrónica de Potencia</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">5</td><td class="px-6 py-3">Medidas Electrónicas II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">8</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">5</td><td class="px-6 py-3">Organización Industrial</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">5</td><td class="px-6 py-3">Sistemas de Control</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">9</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">5</td><td class="px-6 py-3">Tecnología Electrónica</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">5</td><td class="px-6 py-3">Técnicas Digitales III</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">8</td></tr>
-                                    <!-- Año 6 (las que estás cursando aparecen como "Cursando") -->
-                                    <tr><td class="px-6 py-3 text-center">6</td><td class="px-6 py-3">Práctica Profesional Supervisada</td><td class="px-6 py-3 text-center text-green-600 font-medium">Aprobado</td><td class="px-6 py-3 text-center font-bold">7</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">6</td><td class="px-6 py-3">Bioelectrónica y Microsistemas (Elec.)</td><td class="px-6 py-3 text-center text-amber-600 font-medium">Cursando</td><td class="px-6 py-3 text-center font-bold text-gray-400">-</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">6</td><td class="px-6 py-3">Electrónica Industrial (Elec.)</td><td class="px-6 py-3 text-center text-amber-600 font-medium">Cursando</td><td class="px-6 py-3 text-center font-bold text-gray-400">-</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">6</td><td class="px-6 py-3">Sistemas Avanzados de Telecomunicaciones</td><td class="px-6 py-3 text-center text-amber-600 font-medium">Cursando</td><td class="px-6 py-3 text-center font-bold text-gray-400">-</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">6</td><td class="px-6 py-3">Economía</td><td class="px-6 py-3 text-center text-amber-600 font-medium">Cursando</td><td class="px-6 py-3 text-center font-bold text-gray-400">-</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">6</td><td class="px-6 py-3">Proyecto Final</td><td class="px-6 py-3 text-center text-amber-600 font-medium">Cursando</td><td class="px-6 py-3 text-center font-bold text-gray-400">-</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">6</td><td class="px-6 py-3">Instrumentación y Control de Procesos (E)</td><td class="px-6 py-3 text-center text-amber-600 font-medium">Cursando</td><td class="px-6 py-3 text-center font-bold text-gray-400">-</td></tr>
-                                    <tr><td class="px-6 py-3 text-center">6</td><td class="px-6 py-3">Procesamiento Embebido de Señales (Elec.)</td><td class="px-6 py-3 text-center text-amber-600 font-medium">Cursando</td><td class="px-6 py-3 text-center font-bold text-gray-400">-</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="mt-10 text-center">
-                            <button onclick="showSection('inicio')" class="px-10 py-4 bg-[#003087] hover:bg-[#002266] text-white font-semibold rounded-2xl transition-all text-lg">← Volver a menú principal</button>
-                        </div>
-                    </div>`;
-            } 
+                    <!-- ==================== SECCIÓN MATERIAS DEL PLAN ==================== -->
+<div class="text-center">
+    <h2 class="text-3xl font-bold text-[#003087] mb-8">Materias de Ingeniería Electrónica - Plan 2023</h2>
+    
+    <div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
+        <table class="min-w-full text-sm">
+            <thead>
+                <tr class="bg-[#003087] text-white">
+                    <th class="px-6 py-4 text-left font-semibold">Año</th>
+                    <th class="px-6 py-4 text-left font-semibold">Dic.</th>
+                    <th class="px-6 py-4 text-left font-semibold">Materia</th>
+                    <th class="px-6 py-4 text-center font-semibold">Se Cursa</th>
+                    <th class="px-6 py-4 text-center font-semibold">Se Rinde</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 text-gray-700">
+                <!-- Año 1 -->
+                <tr><td class="px-6 py-3 font-medium text-center">1</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Análisis Matemático I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">1</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Física I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">1</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Informática I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">1</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Ingeniería Electrónica</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">1</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Ingeniería y Sociedad</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">1</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Química General</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">1</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Álgebra y Geometría Analítica</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+
+                <!-- Año 2 -->
+                <tr><td class="px-6 py-3 font-medium text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Análisis Matemático II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Cálculo Numérico</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Dispositivos Electrónicos</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Física II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Informática II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Inglés I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Probabilidad y Estadística</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Taller de Matemática Aplicada</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">2</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Técnicas Digitales I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+
+                <!-- Año 3 -->
+                <tr><td class="px-6 py-3 font-medium text-center">3</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Análisis de Señales y Sistemas</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">3</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Diseño Asistido por Computadora</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">3</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Electrónica Aplicada I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">3</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Física Electrónica</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">3</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Inglés II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">3</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Medios de Enlace</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">3</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Seguridad, Higiene y Medio Ambiente</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">3</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Teoría de los Circuitos I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+
+                <!-- Año 4 -->
+                <tr><td class="px-6 py-3 font-medium text-center">4</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Electrónica Aplicada II</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">4</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Legislación</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">4</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Medidas Electrónicas I</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">4</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Máquinas e Instalaciones Eléctricas</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+
+                <!-- Año 5 -->
+                <tr><td class="px-6 py-3 font-medium text-center">5</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Electrónica Aplicada III</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">5</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Sistemas de Control</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+
+                <!-- Año 6 -->
+                <tr><td class="px-6 py-3 font-medium text-center">6</td><td class="px-6 py-3 text-center">Anual</td><td class="px-6 py-3">Práctica Profesional Supervisada</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+                <tr><td class="px-6 py-3 font-medium text-center">6</td><td class="px-6 py-3 text-center">1/2c</td><td class="px-6 py-3">Proyecto Final</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td><td class="px-6 py-3 text-center text-green-600 font-medium">Sí</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-10 text-center">
+        <button onclick="showSection('inicio')" 
+                class="px-10 py-4 bg-[#003087] hover:bg-[#002266] text-white font-semibold rounded-2xl transition-all text-lg">
+            ← Volver a menú principal
+        </button>
+    </div>
+</div>
+} 
             else if (section === 'estado') {
                 content.innerHTML = `
                     <div class="max-w-3xl mx-auto bg-white border border-gray-300 shadow-2xl p-8 md:p-12 rounded-2xl">
